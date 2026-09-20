@@ -115,6 +115,23 @@ class Program
         #endregion
 
         #endregion
+        
+        #region Run Part 5 — Duration Analysis
+
+        Console.WriteLine("Part 5 — Duration Analysis");
+        Console.WriteLine($"----------------------");
+        Console.WriteLine($"Total Duration: {GetTotalDuration(sessionDurations)} minutes");
+        Console.WriteLine($"Average Duration: {GetAverageDuration(sessionDurations)} minutes");
+        Console.WriteLine($"Shortest Duration: {GetShortestDuration(sessionDurations)} minutes");
+        Console.WriteLine($"Longest Duration: {GetLongestDuration(sessionDurations)} minutes");
+        Console.WriteLine($"Sorted Duration: ");
+        SortSessionDurations(sessionDurations);
+        
+        Console.WriteLine($"----------------------");
+
+        #endregion
+
+        
     }
 
     #region Part 2 — Display All Sessions
@@ -252,4 +269,51 @@ class Program
     #endregion
 
     #endregion
+
+    #region Part 5 — Duration Analysis
+
+    static int GetTotalDuration(int[] sessionDurations)
+    {
+        int total = 0;
+        for (int i = 0; i < sessionDurations.Length; i++)
+        {
+            total += sessionDurations[i];
+        }
+        return total;
+    }
+
+    static double GetAverageDuration(int[] sessionDurations)
+    {
+        return (double)GetTotalDuration(sessionDurations) / sessionDurations.Length;
+    }
+
+    static int GetShortestDuration(int[] sessionDurations)
+    {
+        int shortest = sessionDurations[0];
+        foreach (var item in sessionDurations)
+            shortest= Math.Min(shortest, item);
+        return shortest;
+    }
+    
+    static int GetLongestDuration(int[] sessionDurations)
+    {
+        int longest = sessionDurations[0];
+        foreach (var item in sessionDurations)
+            longest= Math.Max(longest, item);
+        return longest;
+    }
+
+    static void SortSessionDurations(int[] sessionDurations)
+    {
+        int[] copyOfSessionDurations =  new int[sessionDurations.Length];
+        Array.Copy(sessionDurations , copyOfSessionDurations ,  sessionDurations.Length);
+        Array.Sort(copyOfSessionDurations);
+        foreach (var item in copyOfSessionDurations)
+        {
+            Console.WriteLine(item);
+        }
+    }
+
+    #endregion
+    
 }
