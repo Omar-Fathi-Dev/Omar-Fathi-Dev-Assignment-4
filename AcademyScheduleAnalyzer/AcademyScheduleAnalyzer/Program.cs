@@ -37,8 +37,16 @@ class Program
 
         #region Run Part 2 — Display All Sessions
 
-        DisplayAllSessions(sessionNames,sessionDates,sessionDurations);
+        // DisplayAllSessions(sessionNames,sessionDates,sessionDurations);
 
+        #endregion
+
+        #region Run  Part 3 — Search for a Session
+
+        Console.Write("Enter a session name: ");
+        string sessionName = Console.ReadLine()!;
+        
+        SearchForASession(sessionName, sessionNames, sessionDates, sessionDurations);
         #endregion
     }
 
@@ -55,6 +63,21 @@ class Program
                               $"Duration: {sessionDurations[i]} minutes\n");
             
         }
+    }
+
+    #endregion
+
+    #region Part 3 — Search for a Session
+
+    static void SearchForASession(string sessionName , string[] sessionNames , DateTime[] sessionDates , int[] sessionDurations )
+    {
+        int index = sessionNames.IndexOf(sessionName);
+        if (index == -1)
+        {
+            Console.WriteLine("Session not found.");
+            return;
+        }
+        DisplayAllSessions([sessionNames[index]],[sessionDates[index]],[sessionDurations[index]]);
     }
 
     #endregion
