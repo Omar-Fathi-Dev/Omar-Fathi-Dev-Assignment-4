@@ -133,8 +133,6 @@ class Program
         // Console.WriteLine($"----------------------");
 
         #endregion
-        
-        
 
         #region Run Part 6 — Functions
 
@@ -146,8 +144,59 @@ class Program
         // DateTime? date = ReadSessionDate();
         // Console.WriteLine($"date: {date}");
 
-        string s = BuildReportUsingStringBuilder(sessionNames, sessionDates, sessionDurations);
-        Console.WriteLine(s);
+        // string s = BuildReportUsingStringBuilder(sessionNames, sessionDates, sessionDurations);
+        // Console.WriteLine(s);
+        #endregion
+
+        #region Run Part 7 — ref, out, and Reference-Type Parameters
+
+        #region Run 7.1 ref
+
+        // Console.WriteLine("7.1 ref");
+        // Console.WriteLine("-------------------");
+        // int num = 10;
+        // Console.WriteLine($"Before calling TryRefKeyword function: {num}");
+        // TryRefKeyword(ref num);
+        // Console.WriteLine($"After calling TryRefKeyword function: {num}");
+        // Console.WriteLine("-------------------");
+
+        #endregion
+
+        #region Run 7.2 out
+        Console.WriteLine("7.2 out");
+        Console.WriteLine("-------------------");
+        Console.Write("Enter session:");
+        string session = Console.ReadLine()!;
+        bool isExist= GetSessionIndexAndDuration(session, sessionNames, sessionDurations, out int index , out int duration);
+        if(isExist)
+            Console.WriteLine($"Index: {index}\nDuration: {duration} minutes");
+        else
+            Console.WriteLine("Session not found.");
+        Console.WriteLine("-------------------");
+
+        #endregion
+
+        #region Run 7.3 Reference Type Without ref
+
+        // Console.WriteLine("7.3 Reference Type Without ref");
+        // Console.WriteLine("-------------------");
+        // int[] arr = [1,2,3,4,5];
+        //
+        // Console.WriteLine($"Before calling CheckArrayIfChanged function:");
+        // foreach (var item in arr)
+        //     Console.Write($"{item}  ");
+        //
+        // CheckArrayIfChanged(arr);
+        //
+        // Console.WriteLine($"\nAfter calling CheckArrayIfChanged function: ");
+        // foreach (var item in arr)
+        //     Console.Write($"{item}  ");
+        //
+        // Console.WriteLine("\n-------------------");
+
+        #endregion
+        
+        
         #endregion
 
 
@@ -409,5 +458,50 @@ class Program
     
 
     #endregion
+
+    #region Part 7 — ref, out, and Reference-Type Parameters
+
+    #region 7.1 ref
+
+    static void TryRefKeyword(ref int value) => value++;
+    
+
+    #endregion
+
+    #region 7.2 out
+
+    static bool GetSessionIndexAndDuration(string sessionName, string[] sessionNames, int[] sessionDurations,
+        out int index, out int duration)
+    {
+        int ind = GetSessionIndex(sessionName, sessionNames);
+        if (ind == -1)
+        {
+            index = -1;
+            duration = -1;
+            return false;
+        }
+
+        index = ind;
+        duration = sessionDurations[ind];
+        return true;
+    }
+
+    #endregion
+
+    #region 7.3 Reference Type Without ref
+
+    static void CheckArrayIfChanged(int[] arr)
+    {
+        if (arr.Length > 0)
+            arr[0]++;
+    }
+
+    #endregion
+
+    #endregion
+    
+    
+    
+    
     
 }
