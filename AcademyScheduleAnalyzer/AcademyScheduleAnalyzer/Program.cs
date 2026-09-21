@@ -163,16 +163,16 @@ class Program
         #endregion
 
         #region Run 7.2 out
-        Console.WriteLine("7.2 out");
-        Console.WriteLine("-------------------");
-        Console.Write("Enter session:");
-        string session = Console.ReadLine()!;
-        bool isExist= GetSessionIndexAndDuration(session, sessionNames, sessionDurations, out int index , out int duration);
-        if(isExist)
-            Console.WriteLine($"Index: {index}\nDuration: {duration} minutes");
-        else
-            Console.WriteLine("Session not found.");
-        Console.WriteLine("-------------------");
+        // Console.WriteLine("7.2 out");
+        // Console.WriteLine("-------------------");
+        // Console.Write("Enter session:");
+        // string session = Console.ReadLine()!;
+        // bool isExist= GetSessionIndexAndDuration(session, sessionNames, sessionDurations, out int index , out int duration);
+        // if(isExist)
+        //     Console.WriteLine($"Index: {index}\nDuration: {duration} minutes");
+        // else
+        //     Console.WriteLine("Session not found.");
+        // Console.WriteLine("-------------------");
 
         #endregion
 
@@ -197,6 +197,15 @@ class Program
         #endregion
         
         
+        #endregion
+
+        #region Run Part 8 — params Keyword
+
+        // int total = CalculateTotalDuration(120, 180);
+        // Console.WriteLine($"Total Duration = {total}");
+        // total = CalculateTotalDuration(60, 90, 120, 180, 240);
+        // Console.WriteLine($"Total Duration = {total}");
+
         #endregion
 
 
@@ -499,6 +508,20 @@ class Program
     #endregion
 
     #endregion
+
+    #region Part 8 — params Keyword
+
+    static int CalculateTotalDuration(params int[] durations)
+    {
+        int total = 0;
+        foreach (var item in durations)
+            total += item;
+        
+        return total;
+    }
+
+    #endregion
+    
     
     
     
