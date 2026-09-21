@@ -286,6 +286,12 @@ class Program
 
         #endregion
 
+        #region Run Part 19 — Build a Schedule Report Using string
+
+        // string report = BuildScheduleReportUsingString(sessionNames, sessionDates, sessionDurations);
+        // Console.WriteLine(report);
+        #endregion
+
     }
 
     #region Part 2 — Display All Sessions
@@ -838,7 +844,18 @@ class Program
 
     }
 
-    #endregion 
+    #endregion
+
+    #region Part 19 — Build a Schedule Report Using string
+
+    // I will reuse this function from part 6.
+    
+    static string BuildScheduleReportUsingString(string[] sessionNames, DateTime[] sessionDates, int[] sessionDurations)
+    {
+        return BuildReportUsingString(sessionNames , sessionDates , sessionDurations );
+    }
+
+    #endregion
 
     
     
