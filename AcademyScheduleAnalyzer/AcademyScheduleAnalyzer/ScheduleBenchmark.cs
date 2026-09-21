@@ -25,14 +25,14 @@ public class ScheduleBenchmark
     [Benchmark]
     public string StringBuilderConcatenation()
     {
-        string result = "";
+        StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < Iterations; i++)
         {
-            result += "Hello";
+            result.Append("Hello");
         }
 
-        return result;
+        return result.ToString();
     }
 
 }
