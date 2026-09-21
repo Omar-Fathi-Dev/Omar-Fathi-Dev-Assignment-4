@@ -1,4 +1,7 @@
-﻿namespace AcademyScheduleAnalyzer;
+﻿using System.Globalization;
+using System.Text;
+
+namespace AcademyScheduleAnalyzer;
 
 class Program
 {
@@ -118,20 +121,36 @@ class Program
         
         #region Run Part 5 — Duration Analysis
 
-        Console.WriteLine("Part 5 — Duration Analysis");
-        Console.WriteLine($"----------------------");
-        Console.WriteLine($"Total Duration: {GetTotalDuration(sessionDurations)} minutes");
-        Console.WriteLine($"Average Duration: {GetAverageDuration(sessionDurations)} minutes");
-        Console.WriteLine($"Shortest Duration: {GetShortestDuration(sessionDurations)} minutes");
-        Console.WriteLine($"Longest Duration: {GetLongestDuration(sessionDurations)} minutes");
-        Console.WriteLine($"Sorted Duration: ");
-        SortSessionDurations(sessionDurations);
-        
-        Console.WriteLine($"----------------------");
+        // Console.WriteLine("Part 5 — Duration Analysis");
+        // Console.WriteLine($"----------------------");
+        // Console.WriteLine($"Total Duration: {GetTotalDuration(sessionDurations)} minutes");
+        // Console.WriteLine($"Average Duration: {GetAverageDuration(sessionDurations)} minutes");
+        // Console.WriteLine($"Shortest Duration: {GetShortestDuration(sessionDurations)} minutes");
+        // Console.WriteLine($"Longest Duration: {GetLongestDuration(sessionDurations)} minutes");
+        // Console.WriteLine($"Sorted Duration: ");
+        // SortSessionDurations(sessionDurations);
+        //
+        // Console.WriteLine($"----------------------");
 
         #endregion
-
         
+        
+
+        #region Run Part 6 — Functions
+
+        // DisplaySessions(sessionNames);
+        // DateTime? endTime = GetSessionEndTime("Functions", sessionNames, sessionDates, sessionDurations);
+        // Console.WriteLine($"End Time: {endTime}");
+        //
+        //
+        // DateTime? date = ReadSessionDate();
+        // Console.WriteLine($"date: {date}");
+
+        string s = BuildReportUsingStringBuilder(sessionNames, sessionDates, sessionDurations);
+        Console.WriteLine(s);
+        #endregion
+
+
     }
 
     #region Part 2 — Display All Sessions
@@ -313,6 +332,81 @@ class Program
             Console.WriteLine(item);
         }
     }
+
+    #endregion
+
+    #region Part 6 — Functions
+    
+    /*
+     * i already have SearchSession function in part 3 .
+     * and i have GetLongestDuration ,GetShortestDuration, GetAverageDuration and GetTotalDuration functions in part 5.
+     * and i have DisplaySessionDetails function in part 2.
+     */
+
+    static void DisplaySessions(string[] sessionNames)
+    {
+        for (int i = 0; i < sessionNames.Length; i++)
+            Console.WriteLine($"{i+1}- {sessionNames[i]}.");
+    }
+
+    static int GetSessionIndex(string sessionName,string[] sessionNames)
+    {
+        return sessionNames.IndexOf(sessionName);
+    }
+    static DateTime? GetSessionEndTime(string sessionName, string[] sessionNames, DateTime[] sessionDates, int[] sessionDurations)
+    {
+        int index =GetSessionIndex(sessionName, sessionNames);
+        if (index == -1)
+            return null;
+        DateTime endTime = sessionDates[index].AddMinutes(sessionDurations[index]);
+        return endTime;
+
+    }
+
+    static DateTime? ReadSessionDate()
+    {
+        Console.Write("Enter session date (yyyy/MM/dd HH:mm): ");
+        string date = Console.ReadLine()!;
+        if (DateTime.TryParse(date ,out DateTime result))
+            return result;
+        else
+        {
+            Console.WriteLine("Invalid date format.");
+            return null;
+        }
+        
+    
+    }
+
+    static string BuildReportUsingString(string[] sessionNames, DateTime[] sessionDates, int[] sessionDurations)
+    {
+        string allDetails = "";
+        int length = sessionNames.Length;
+        for (int i = 0; i < length; i++)
+        {
+            allDetails +=
+                $"Session Name: {sessionNames[i]}" +
+                $" - Session Date: {sessionDates[i].ToString()}" +
+                $" - Session Duration: {sessionDurations[i].ToString()} minutes \n";
+        }
+
+        return allDetails;
+    }
+
+    static string BuildReportUsingStringBuilder(string[] sessionNames, DateTime[] sessionDates, int[] sessionDurations)
+    {
+        StringBuilder allDetails = new StringBuilder();
+        int length = sessionNames.Length;
+        for (int i = 0; i < length; i++)
+        {
+            allDetails.Append($"Session Name: {sessionNames[i]}" +
+                              $" - Session Date: {sessionDates[i].ToString()}" +
+                              $" - Session Duration: {sessionDurations[i].ToString()} minutes \n");
+        }
+
+        return allDetails.ToString();
+    }
+    
 
     #endregion
     
