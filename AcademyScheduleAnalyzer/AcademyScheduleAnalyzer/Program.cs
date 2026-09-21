@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Text;
+using BenchmarkDotNet.Running;
 
 namespace AcademyScheduleAnalyzer;
 
@@ -296,6 +297,13 @@ class Program
 
         // string report = BuildScheduleReportUsingStringBuilder(sessionNames, sessionDates, sessionDurations);
         // Console.WriteLine(report);
+
+        #endregion
+
+        #region Run Part 25 — Benchmark Analysis
+
+        
+         // BenchmarkRunner.Run<ScheduleBenchmark>();
 
         #endregion
 
@@ -875,11 +883,7 @@ class Program
 
     #endregion
 
-    #region Part 21 — BenchmarkDotNet
 
-        
-
-    #endregion
 
     
     
