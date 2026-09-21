@@ -270,6 +270,19 @@ class Program
 
         #endregion
 
+        #region Run Part 17 — Throw an Exception
+
+        // try
+        // {
+        //     CheckValidDuration();
+        // }
+        // catch (ArgumentException e)
+        // {
+        //     Console.WriteLine(e.Message);
+        // }
+
+        #endregion
+
     }
 
     #region Part 2 — Display All Sessions
@@ -768,23 +781,34 @@ class Program
     }
     
     #endregion
+    
 
     #region Part 16 — Exception Handling: Invalid Array Index
 
-    static void GetSessionByIndex(string[] sessionNames)
+    static int GetNumberFromUser()
     {
-        int index ;
+        int number;
         bool isValid ;
         string input;
         do
         {
-            Console.Write("Enter session index: ");
+            
             input = Console.ReadLine()!;
-            isValid = int.TryParse(input, out index);
-            if(!isValid)
+            isValid = int.TryParse(input, out number);
+            if (!isValid)
+            {
                 Console.WriteLine("Invalid input. Enter a number.");
+                Console.Write("Enter a number: ");
+            }
         } while (!isValid);
 
+        return number;
+    }
+    static void GetSessionByIndex(string[] sessionNames)
+    {
+        Console.Write("Enter session index: ");
+        int index = GetNumberFromUser();
+        
         try
         {
             Console.WriteLine($"Session: {sessionNames[index]}");
@@ -793,6 +817,23 @@ class Program
         {
             Console.WriteLine("The selected session index is out of range.");
         }
+    }
+
+    #endregion
+
+    #region Part 17 — Throw an Exception
+
+    static void CheckValidDuration()
+    {
+        int duration;
+        Console.Write("Enter duration: ");
+        duration = GetNumberFromUser();
+        
+        if (duration > 0)
+            Console.WriteLine("Duration accepted.");
+        else
+            throw new ArgumentException("Duration must be greater than zero.");
+
     }
 
     #endregion
