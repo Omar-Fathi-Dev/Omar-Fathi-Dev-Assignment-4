@@ -3,6 +3,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace AcademyScheduleAnalyzer;
 
+[MemoryDiagnoser]
 public class ScheduleBenchmark
 {
     
