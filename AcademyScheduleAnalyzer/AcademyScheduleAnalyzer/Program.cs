@@ -217,6 +217,19 @@ class Program
 
         #endregion
 
+        #region Run Part 10 — Date Difference
+
+        // Console.WriteLine("Date Difference");
+        // Console.WriteLine("---------------");
+        // Console.Write("First Session: ");
+        // string sessionOne = Console.ReadLine()!;
+        //
+        // Console.Write("Second Session: ");
+        // string sessionTwo = Console.ReadLine()!;
+        // GetTwoSessionsDateDifference(sessionOne, sessionTwo , sessionNames, sessionDates);
+
+        #endregion
+
 
     }
 
@@ -556,8 +569,36 @@ class Program
     }
 
     #endregion
-    
-    
+
+    #region  Part 10 — Date Difference
+
+    static void GetTwoSessionsDateDifference(string sessionOne , string sessionTwo , string[] sessionNames , DateTime[] sessionDates)
+    {
+        int index1 = GetSessionIndex(sessionOne,  sessionNames);
+        if (index1 == -1)
+        {
+            Console.WriteLine($"{sessionOne} session not found.");
+            return;
+        }
+        int index2 = GetSessionIndex(sessionTwo,  sessionNames);
+        if (index2 == -1)
+        {
+            Console.WriteLine($"{sessionTwo} session not found.");
+            return;
+        }
+
+        TimeSpan diff;
+        if (sessionDates[index1] > sessionDates[index2])
+            diff = sessionDates[index1] - sessionDates[index2];
+        else
+            diff = sessionDates[index2] - sessionDates[index1];
+
+        Console.WriteLine("Difference: ");
+        Console.WriteLine($"{diff.Days} days\n" +
+                          $"{diff.TotalHours} hours");
+    }
+
+    #endregion
     
     
 }
