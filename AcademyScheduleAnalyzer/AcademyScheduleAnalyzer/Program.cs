@@ -264,6 +264,12 @@ class Program
 
         #endregion
 
+        #region Run Part 16 — Exception Handling: Invalid Array Index
+
+        // GetSessionByIndex(sessionNames);
+
+        #endregion
+
     }
 
     #region Part 2 — Display All Sessions
@@ -762,8 +768,34 @@ class Program
     }
     
     #endregion
-    
-    
+
+    #region Part 16 — Exception Handling: Invalid Array Index
+
+    static void GetSessionByIndex(string[] sessionNames)
+    {
+        int index ;
+        bool isValid ;
+        string input;
+        do
+        {
+            Console.Write("Enter session index: ");
+            input = Console.ReadLine()!;
+            isValid = int.TryParse(input, out index);
+            if(!isValid)
+                Console.WriteLine("Invalid input. Enter a number.");
+        } while (!isValid);
+
+        try
+        {
+            Console.WriteLine($"Session: {sessionNames[index]}");
+        }
+        catch (IndexOutOfRangeException)
+        {
+            Console.WriteLine("The selected session index is out of range.");
+        }
+    }
+
+    #endregion
     
     
 }
