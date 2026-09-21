@@ -257,6 +257,13 @@ class Program
 
         #endregion
 
+        #region Run Part 15 — Exception Handling: Menu Input
+
+        // int option = ReadMenuInput();
+        // Console.WriteLine($"Option: {option}");
+
+        #endregion
+
     }
 
     #region Part 2 — Display All Sessions
@@ -728,5 +735,35 @@ class Program
 
     #endregion
 
+    #region Part 15 — Exception Handling: Menu Input
 
+    static int ReadMenuInput()
+    {
+        string input;
+        int option = 0 ;
+        bool isValid = false;
+        do
+        {
+            Console.Write("Choose an option: ");
+            input = Console.ReadLine()!;
+            try
+            {
+                option = int.Parse(input);
+                isValid = true;
+            }
+            catch (FormatException) 
+            {
+                Console.WriteLine("Invalid menu option. Enter a number.");
+            }
+            
+        } while (!isValid);
+
+        return option;
+    }
+    
+    #endregion
+    
+    
+    
+    
 }
