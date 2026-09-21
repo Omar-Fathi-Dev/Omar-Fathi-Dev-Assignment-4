@@ -270,7 +270,7 @@ class Program
 
         #endregion
 
-        #region Run Part 17 — Throw an Exception
+        #region Run Part 17 — Throw an Exception And Part 18 — finally
 
         // try
         // {
@@ -279,6 +279,9 @@ class Program
         // catch (ArgumentException e)
         // {
         //     Console.WriteLine(e.Message);
+        // }
+        // finally{
+        //     Console.WriteLine("Input operation finished.");
         // }
 
         #endregion
@@ -782,7 +785,6 @@ class Program
     
     #endregion
     
-
     #region Part 16 — Exception Handling: Invalid Array Index
 
     static int GetNumberFromUser()
@@ -821,7 +823,7 @@ class Program
 
     #endregion
 
-    #region Part 17 — Throw an Exception
+    #region Part 17 — Throw an Exception And Part 18 — finally
 
     static void CheckValidDuration()
     {
@@ -836,7 +838,8 @@ class Program
 
     }
 
-    #endregion
+    #endregion 
+
     
     
 }
