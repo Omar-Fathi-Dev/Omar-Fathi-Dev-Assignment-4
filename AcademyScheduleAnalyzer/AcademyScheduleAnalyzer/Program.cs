@@ -208,6 +208,15 @@ class Program
 
         #endregion
 
+        #region Run Part 9 — Session Date Details
+
+        // Console.Write("Enter Session Name: ");
+        // string name = Console.ReadLine()!;
+        //
+        // GetSessionDateDetails(name ,sessionNames, sessionDates, sessionDurations);
+
+        #endregion
+
 
     }
 
@@ -409,7 +418,7 @@ class Program
 
     static int GetSessionIndex(string sessionName,string[] sessionNames)
     {
-        return sessionNames.IndexOf(sessionName);
+        return Array.FindIndex(sessionNames, name => name.Equals(sessionName, StringComparison.OrdinalIgnoreCase));
     }
     static DateTime? GetSessionEndTime(string sessionName, string[] sessionNames, DateTime[] sessionDates, int[] sessionDurations)
     {
@@ -521,8 +530,32 @@ class Program
     }
 
     #endregion
-    
-    
+
+    #region Part 9 — Session Date Details
+
+    static void GetSessionDateDetails(string sessionName, string[] sessionNames, DateTime[] sessionDates,
+        int[] sessionDurations)
+    {
+       
+       int index = GetSessionIndex(sessionName,  sessionNames);
+       if (index == -1)
+       {
+           Console.WriteLine("Session not found.");
+           return;
+       }
+       
+       Console.WriteLine($"Date: {sessionDates[index].ToString("dd MMMM yyyy")}");
+       Console.WriteLine($"Day: {sessionDates[index].DayOfWeek}");
+       Console.WriteLine($"Year: {sessionDates[index].Year}");
+       Console.WriteLine($"Month: {sessionDates[index].Month}");
+       Console.WriteLine($"Day Number: {sessionDates[index].Day}");
+       Console.WriteLine($"Start Time: {sessionDates[index].ToString("hh:mm tt")}");
+       Console.WriteLine($"Duration: {sessionDurations[index]} minutes");
+       DateTime endTime = sessionDates[index].AddMinutes(sessionDurations[index]);
+       Console.WriteLine($"End Time: {endTime.ToString("hh:mm tt")}");
+    }
+
+    #endregion
     
     
     
