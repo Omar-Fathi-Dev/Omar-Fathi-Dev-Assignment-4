@@ -242,6 +242,13 @@ class Program
 
         #endregion
 
+        #region Run Part 13 — Date Formatting
+
+        // Console.Write("Enter Session Name: ");
+        // string session = Console.ReadLine()!;
+        // DisplaySessionDateFormats(session, sessionNames, sessionDates);
+
+        #endregion
 
     }
 
@@ -664,8 +671,28 @@ class Program
     }
 
     #endregion
-    
-    
-    
-    
+
+    #region Part 13 — Date Formatting
+
+    static void DisplaySessionDateFormats(string sessionName , string[] sessionNames, DateTime[] sessionDates)
+    {
+        int index = GetSessionIndex(sessionName,  sessionNames);
+        if (index == -1)
+        {
+            Console.WriteLine("Session  not found.");
+            return;
+        }
+        Console.WriteLine(sessionDates[index].ToString("yyyy-MM-dd"));
+        Console.WriteLine(sessionDates[index].ToString("dd/MM/yyyy"));
+        Console.WriteLine(sessionDates[index].ToString("dd MMMM yyyy"));
+        Console.WriteLine(sessionDates[index].ToString("dddd, dd MMMM yyyy"));
+        Console.WriteLine(sessionDates[index].ToString("hh:mm tt"));
+        
+        
+        
+    }
+
+    #endregion
+
+
 }
