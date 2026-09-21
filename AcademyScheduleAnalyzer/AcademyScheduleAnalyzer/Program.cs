@@ -230,6 +230,12 @@ class Program
 
         #endregion
 
+        #region Run Part 11 — Past and Upcoming Sessions
+
+        // DisplayPastOrUpcomingSessions(sessionNames, sessionDates);
+
+        #endregion
+
 
     }
 
@@ -596,6 +602,22 @@ class Program
         Console.WriteLine("Difference: ");
         Console.WriteLine($"{diff.Days} days\n" +
                           $"{diff.TotalHours} hours");
+    }
+
+    #endregion
+
+    #region Part 11 — Past and Upcoming Sessions
+
+    static void DisplayPastOrUpcomingSessions(string[] sessionNames , DateTime[] sessionDates)
+    {
+        DateTime now =  DateTime.Now;
+        for (int i = 0; i < sessionNames.Length; i++)
+        {
+            if(now > sessionDates[i])
+                Console.WriteLine($"{sessionNames[i]} Past");
+            else
+                Console.WriteLine($"{sessionNames[i]} Upcoming");
+        }
     }
 
     #endregion
