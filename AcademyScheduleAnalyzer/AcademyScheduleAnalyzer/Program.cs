@@ -250,6 +250,13 @@ class Program
 
         #endregion
 
+        #region Run Part 14 — Read and Validate a Date
+
+        // DateTime dateTime = ReadDateTimeInput();
+        // Console.WriteLine($"User Date: {dateTime}");
+
+        #endregion
+
     }
 
     #region Part 2 — Display All Sessions
@@ -690,6 +697,33 @@ class Program
         
         
         
+    }
+
+    #endregion
+
+    #region Part 14 — Read and Validate a Date
+
+    static bool CheckValidateDate(string input, string format , out DateTime dateTime) 
+    {
+        return (DateTime.TryParseExact(input, format, CultureInfo.InvariantCulture, DateTimeStyles.None,
+            out dateTime));
+    }
+    
+    static DateTime ReadDateTimeInput()
+    {
+        DateTime dateTime;
+        string format = "yyyy-MM-dd HH:mm";
+        string input;
+        bool isValid  = false;
+        do
+        {
+            Console.Write($"Please enter the date and time in the following format: {format}: ");
+            input = Console.ReadLine()!;
+            isValid  = CheckValidateDate(input, format, out dateTime);
+
+        } while (isValid  == false);
+
+        return dateTime;
     }
 
     #endregion
