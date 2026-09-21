@@ -236,6 +236,12 @@ class Program
 
         #endregion
 
+        #region Run Part 12 — Find the Next Session
+
+        // FindNextSession(sessionNames, sessionDates);
+
+        #endregion
+
 
     }
 
@@ -621,6 +627,45 @@ class Program
     }
 
     #endregion
+    
+    #region Part 12 — Find the Next Session
+
+    static void FindNextSession(string[] sessionNames, DateTime[] sessionDates)
+    {
+        DateTime now =  DateTime.Now;
+        int index =-1;
+        for (int i = 0; i < sessionNames.Length; i++)
+        {
+            if (sessionDates[i] > now)
+            {
+                index = i;
+                break;
+            }
+                
+        }
+
+        if (index == -1)
+        {
+            Console.WriteLine("No session found.");
+            return;
+        }
+
+        Console.WriteLine("Next Session: ");
+        Console.WriteLine(sessionNames[index]);
+        Console.WriteLine(sessionDates[index].ToString("dd MMMM yyyy"));
+        Console.WriteLine(sessionDates[index].ToString("hh:mm tt"));
+        Console.WriteLine("Time Remaining: ");
+        TimeSpan timeSpan =sessionDates[index] -  now ;
+        Console.WriteLine($"{timeSpan.Days} days");
+        Console.WriteLine($"{timeSpan.Hours} hours");
+        
+            
+        
+    }
+
+    #endregion
+    
+    
     
     
 }
