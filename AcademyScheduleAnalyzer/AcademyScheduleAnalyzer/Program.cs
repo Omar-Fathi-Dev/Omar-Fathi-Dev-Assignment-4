@@ -306,7 +306,102 @@ class Program
          // BenchmarkRunner.Run<ScheduleBenchmark>();
 
         #endregion
+
+        #region Run Part 31 — Console Menu
+
+        bool inLoop = true;
+
+        while (inLoop)
+        {
+            int option = GenerateConsoleMenu();
+
+        switch (option)
+        {
+            case 1 :
+                DisplayAllSessions(sessionNames, sessionDates, sessionDurations);
+                break;
+            
+            case 2 :
+                Console.Write("Enter session name: ");
+                string input = Console.ReadLine()!;
+                SearchForASession(input, sessionNames, sessionDates, sessionDurations);
+                break;
+            
+            case 3 :
+                SortSessionNames(sessionNames);
+                break;
+            
+            case 4 :
+                ReverseSessionNames(sessionNames);
+                break;
+            
+            case 5 :
+                FindSessionIndex(sessionNames);
+                break;
+            
+            case 6 :
+                CheckIfSessionExists(sessionNames);
+                break;
+            
+            case 7 :
+                Console.WriteLine($"Total duration = {GetTotalDuration(sessionDurations)}");
+                Console.WriteLine($"Average duration = {GetAverageDuration(sessionDurations)}");
+                Console.WriteLine($"Shortest duration = {GetShortestDuration(sessionDurations)}");
+                Console.WriteLine($"Longest duration = {GetLongestDuration(sessionDurations)}");
+                break;
+            
+            case 8 : 
+                Console.Write("Enter session name: ");
+                string name = Console.ReadLine()!;
+                GetSessionDateDetails(name, sessionNames, sessionDates, sessionDurations);
+                break;
+            
+            case 9 :
+                DisplayPastOrUpcomingSessions(sessionNames, sessionDates);
+                break;
+            
+            case 10 :
+                FindNextSession(sessionNames, sessionDates);
+                break;
+            
+            case 11 : 
+                Console.Write("Enter session one name: ");
+                string s1 = Console.ReadLine()!;
+                Console.Write("Enter session two name: ");
+                string s2 = Console.ReadLine()!;
+                GetTwoSessionsDateDifference(s1, s2, sessionNames , sessionDates);
+                break;
+            
+            case 12 :
+                Console.WriteLine(ReadDateTimeInput());
+                break;
+            
+            case 13 :
+                GetSessionByIndex(sessionNames);
+                break;
+            
+            case 14 :
+                CheckValidDuration();
+                break;
+            
+            case 15 :
+                Console.WriteLine(BuildReportUsingString(sessionNames, sessionDates, sessionDurations));
+                break;
+            
+            case 16 : 
+                Console.WriteLine(BuildReportUsingStringBuilder(sessionNames, sessionDates, sessionDurations));
+                break;
+            
+            default:
+                inLoop = false;
+                break;
+        }
+        }
+
         
+
+        #endregion
+
 
     }
 
@@ -331,7 +426,7 @@ class Program
 
     static void SearchForASession(string sessionName , string[] sessionNames , DateTime[] sessionDates , int[] sessionDurations )
     {
-        int index = sessionNames.IndexOf(sessionName);
+        int index = Array.FindIndex(sessionNames, name => name.Equals(sessionName, StringComparison.OrdinalIgnoreCase));
         if (index == -1)
         {
             Console.WriteLine("Session not found.");
@@ -380,7 +475,7 @@ class Program
     {
         Console.Write("Enter session name: ");
         string sessionName = Console.ReadLine()!;
-        int index = sessionNames.IndexOf(sessionName);
+        int index = Array.FindIndex(sessionNames, name => name.Equals(sessionName, StringComparison.OrdinalIgnoreCase));
         if(index == -1)
             Console.WriteLine($"session not found.");
         else
@@ -821,7 +916,7 @@ class Program
             isValid = int.TryParse(input, out number);
             if (!isValid)
             {
-                Console.WriteLine("Invalid input. Enter a number.");
+                Console.WriteLine("Invalid input.");
                 Console.Write("Enter a number: ");
             }
         } while (!isValid);
@@ -884,8 +979,48 @@ class Program
 
     #endregion
     
-    
+    #region Part 31 — Console Menu
 
+
+    static int GenerateConsoleMenu()
+    {
+        int option = -1;
+        Console.WriteLine("===================================");
+        Console.WriteLine("Academy Schedule Analyzer");
+        Console.WriteLine("===================================\n");
+        Console.WriteLine("1. Display all sessions");
+        Console.WriteLine("2. Search for a session Schedule Analyzer");
+        Console.WriteLine("3. Sort session names");
+        Console.WriteLine("4. Reverse session names");
+        Console.WriteLine("5. Find session index");
+        Console.WriteLine("6. Check if session exists");
+        Console.WriteLine("7. Show duration statistics");
+        Console.WriteLine("8. Show session date details");
+        Console.WriteLine("9. Show past and upcoming sessions");
+        Console.WriteLine("10. Find next session");
+        Console.WriteLine("11. Compare two session dates");
+        Console.WriteLine("12. Read and validate a custom date");
+        Console.WriteLine("13. Select session by index");
+        Console.WriteLine("14. Validate session duration");
+        Console.WriteLine("15. Generate report using string");
+        Console.WriteLine("16. Generate report using StringBuilder");
+        Console.WriteLine("0. Exit");
+
+        
+
+
+        while (!(option >= 0 && option < 17))
+        {
+            Console.Write("Choose an option:");
+            option = GetNumberFromUser();
+        }
+
+        return option;
+    }
+    
+    
+    #endregion
+    
 
 
     
